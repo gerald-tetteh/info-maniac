@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-
+import lxml
 from info_maniac.models import JobItem
 from info_maniac import db
 
@@ -59,7 +59,9 @@ def scrape_from_timesjobs():
         )
 
         jobsItems_from_timesjobs.append(job_item)
-    db.session.add_all(jobsItems_from_timesjobs)      
+    db.session.add_all(jobsItems_from_timesjobs)    
+    
+      
 
 def scrape_and_save():
     scrape_from_timesjobs()
