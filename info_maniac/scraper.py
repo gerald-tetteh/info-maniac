@@ -3,13 +3,10 @@ from bs4 import BeautifulSoup
 from info_maniac.models import JobItem
 from info_maniac import db
 
-# Jobs from sites
-jobsItems_from_jobberman=[]
-jobsItems_from_timesjobs=[]
-
 def scrape_from_jobberman():
     jobberman_url = requests.get("https://www.jobberman.com.gh/jobs?sort_by=latest").text
     soup = BeautifulSoup(jobberman_url,'lxml')
+    jobsItems_from_jobberman=[]
 
     jobbermab_content = soup.find_all('header', class_="search-result__header")
 
@@ -30,12 +27,12 @@ def scrape_from_jobberman():
         )
 
         jobsItems_from_jobberman.append(job_item)
-    db.session.add_all(jobsItems_from_jobberman)
+    return jobsItems_from_jobberman
   
-
 def scrape_from_timesjobs():
     timesjobs_url = "https://www.timesjobs.com/candidate/job-search.html?searchType=Home_Search&from=submit&asKey=OFF&txtKeywords=&cboPresFuncArea=35"
     timesjobs_content = requests.get(timesjobs_url).text
+    jobsItems_from_timesjobs=[]
 
     soup = BeautifulSoup(timesjobs_content,'lxml')
 
@@ -58,11 +55,21 @@ def scrape_from_timesjobs():
         )
 
         jobsItems_from_timesjobs.append(job_item)
-    db.session.add_all(jobsItems_from_timesjobs)    
-    
-      
+    return jobsItems_from_timesjobs
 
+def save_jobs(list_of_jobs):
+    for job in list_of_jobs:
+        try:
+            db.session.add(job)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+        
 def scrape_and_save():
-    scrape_from_timesjobs()
-    scrape_from_jobberman()
-    db.commit()
+    print("starting")
+    jobs_from_timesjobs = scrape_from_timesjobs()
+    jobs_from_jobberman = scrape_from_jobberman()
+    print("done scraping")
+    save_jobs(jobs_from_jobberman)
+    save_jobs(jobs_from_timesjobs)
+    print("done saving")
