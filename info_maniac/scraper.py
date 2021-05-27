@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import lxml
 from info_maniac.models import JobItem
 from info_maniac import db
 
