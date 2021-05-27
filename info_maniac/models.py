@@ -1,4 +1,4 @@
-from server import db
+from info_maniac import db
 from datetime import datetime
 
 class JobItem(db.Model):
@@ -12,4 +12,4 @@ class JobItem(db.Model):
   job_type = db.Column(db.Text, nullable=False, default="Unknown")
 
   def __repr__(self) -> str:
-    return f"JobItem({self.title},{self.company},{self.source_site_name})"
+    return f"JobItem({self.title},{self.company},{self.source_name})"
