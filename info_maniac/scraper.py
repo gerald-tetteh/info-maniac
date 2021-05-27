@@ -1,9 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime
 
-from models import JobItem
-from server import db
+from info_maniac.models import JobItem
+from info_maniac import db
 
 # Jobs from sites
 jobsItems_from_jobberman=[]
@@ -28,7 +27,7 @@ def scrape_from_jobberman():
             job_type = job_type.strip(),
             source_name = "Jobberman",
             source_url = source_url,
-            image = image,
+            image_url = image,
         )
 
         jobsItems_from_jobberman.append(job_item)
@@ -56,7 +55,7 @@ def scrape_from_timesjobs():
             job_type = job_type.strip(),
             source_name = "TimesJobs",
             source_url = source_url,
-            image = image,
+            image_url = image,
         )
 
         jobsItems_from_timesjobs.append(job_item)
