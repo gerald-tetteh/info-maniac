@@ -5,11 +5,9 @@ from datetime import datetime
 from models import JobItem
 from server import db
 
-
 # Jobs from sites
 jobsItems_from_jobberman=[]
 jobsItems_from_timesjobs=[]
-
 
 def scrape_from_jobberman():
     jobberman_url = requests.get("https://www.jobberman.com.gh/jobs?sort_by=latest").text
@@ -62,9 +60,9 @@ def scrape_from_timesjobs():
         )
 
         jobsItems_from_timesjobs.append(job_item)
-    db.session.add_all(jobsItems_from_timesjobs)
-        
+    db.session.add_all(jobsItems_from_timesjobs)      
 
-scrape_from_timesjobs()
-scrape_from_jobberman()
-db.commit()
+def scrape_and_save():
+    scrape_from_timesjobs()
+    scrape_from_jobberman()
+    db.commit()
