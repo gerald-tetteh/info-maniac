@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-
 from info_maniac.models import JobItem
 from info_maniac import db
 
@@ -57,10 +56,20 @@ def scrape_from_timesjobs():
 
         jobsItems_from_timesjobs.append(job_item)
     return jobsItems_from_timesjobs
+
+def save_jobs(list_of_jobs):
+    for job in list_of_jobs:
+        try:
+            db.session.add(job)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
         
 def scrape_and_save():
+    print("starting")
     jobs_from_timesjobs = scrape_from_timesjobs()
     jobs_from_jobberman = scrape_from_jobberman()
-    db.session.add_all(jobs_from_timesjobs)  
-    db.session.add_all(jobs_from_jobberman)
-    db.commit()
+    print("done scraping")
+    save_jobs(jobs_from_jobberman)
+    save_jobs(jobs_from_timesjobs)
+    print("done saving")
