@@ -80,8 +80,6 @@ def scrape_and_save():
     save_jobs(jobs_from_timesjobs)
     print("done saving")
 
-
-
 def search_jobberman_scraper(query):
     query = quote_plus(query)
     base_url = f"https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords={query}&txtLocation="
@@ -111,6 +109,8 @@ def search_jobberman_scraper(query):
         jobsItems_from_timesjobs.append(job_item)
 
     return jobsItems_from_timesjobs
+
+
 
 
     
