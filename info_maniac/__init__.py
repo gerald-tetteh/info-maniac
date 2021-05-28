@@ -12,9 +12,9 @@ from info_maniac.scraper import scrape_and_save
 import info_maniac.routes
 
 # starting scheduler 
-scheduler = BackgroundScheduler()
-scheduler.add_job(scrape_and_save,'interval', seconds=3600)
-scheduler.start()
+# scheduler = BackgroundScheduler()
+# scheduler.add_job(scrape_and_save,'interval', seconds=3600)
+# scheduler.start()
 
-#shutting down server
-atexit.register(lambda: scheduler.shutdown())
+# #shutting down server
+# atexit.register(lambda: scheduler.shutdown())
