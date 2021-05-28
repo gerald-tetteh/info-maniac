@@ -8,9 +8,6 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
 
 db = SQLAlchemy(app)
 
-def tester():
-  print("----------- Testing ------------")
-
 from info_maniac.scraper import scrape_and_save
 import info_maniac.routes
 
