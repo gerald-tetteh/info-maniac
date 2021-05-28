@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 from info_maniac.models import JobItem
 from info_maniac import db
+from requests.compat import  quote_plus
+
 
 def scrape_from_jobberman():
     jobberman_url = requests.get("https://www.jobberman.com.gh/jobs?sort_by=latest").text
@@ -73,3 +75,40 @@ def scrape_and_save():
     save_jobs(jobs_from_jobberman)
     save_jobs(jobs_from_timesjobs)
     print("done saving")
+
+
+
+def search_jobberman_scraper(query):
+    query = quote_plus(query)
+    base_url = f"https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords={query}&txtLocation="
+    site_content = requests.get(base_url).text
+    jobsItems_from_timesjobs=[]
+
+    soup = BeautifulSoup(site_content, 'lxml')
+
+    jobs = soup.find_all('li', class_="clearfix job-bx wht-shd-bx")
+
+    for job in jobs:
+        title_ = job.header.h2.text
+        job_type = "Unknown"
+        company= job.header.h3.text
+        source_url= job.header.h2.a['href']
+        image=""
+
+        job_item = JobItem(
+            title = title_.strip(),
+            company = company.strip(),
+            job_type = job_type.strip(),
+            source_name = "TimesJobs",
+            source_url = source_url,
+            image_url = image,
+        )
+
+        jobsItems_from_timesjobs.append(job_item)
+
+    return jobsItems_from_timesjobs
+
+
+    
+
+search_jobberman_scraper("python senior dev")
