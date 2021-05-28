@@ -1,0 +1,77 @@
+html {
+    font-size: 62.5%;
+}
+body {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.6rem;
+    padding: 1rem;
+}
+
+.navbar-brand {
+    font-family: 'Bangers', cursive;
+    font-size: 2rem;
+}
+.navbar {
+    background-color: #03a9f4;
+    margin: 1rem 0;
+    border-radius: 0.8rem;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+    font-weight: 600;
+}
+
+.banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.banner-heading {
+    font-family: 'Bangers', cursive;
+    font-size: 10rem;
+}
+.banner-hr {
+    color: #212121;
+    width: 50%;
+}
+
+.search-form {
+    width: 80%;
+}
+.search-form input {
+    width: 90%;
+    margin: auto;
+    transition: all 0.15s;
+}
+.search-form input:focus {
+    border-color: #03a9f4;
+    box-shadow: 0.05rem 0.05rem 0.15rem 0.15rem #03a9f4;
+}
+.custom-search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.custom-search .btn {
+    margin: 1rem;
+    margin-bottom: 3.5rem;
+    width: 40%;
+    background-color: #03a9f4;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.main {
+    border: 2px solid black;
+}
+.main-side {
+    width: 90%;
+    border: 2px solid black
+}
+
+@media only screen and (max-width: 600px) {
+    .banner-heading {
+        font-size: 5rem;
+    }
+}
