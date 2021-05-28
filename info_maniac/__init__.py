@@ -13,7 +13,7 @@ import info_maniac.routes
 
 # starting scheduler 
 scheduler = BackgroundScheduler()
-scheduler.add_job(scrape_and_save,'interval', seconds=60)
+scheduler.add_job(scrape_and_save,'interval', seconds=3600)
 scheduler.start()
 
 #shutting down server
