@@ -4,9 +4,9 @@
     <div class="row gx-5">
         <div class="side-bar position-sticky col-3 d-none d-md-block">
             <div class="main-side card shadow">
-                <p>Jobberman</p>
+               <a href = "{{ url_for('jobberman')}}" class = "{{'active' if path == '/jobberman' else ''}}"> <p>Jobberman</p></a>
                 <hr>
-                <p>Times Jobs</p>
+               <a href = "{{ url_for('times_jobs')}}" class = "{{'active' if path == '/times_jobs' else ''}}"> <p>Times Jobs</p></a>
             </div>
         </div>
         <div class="main col-12 col-md-9">
@@ -15,9 +15,10 @@
                 <div class="card col-md-6 col-lg-4 col-12 shadow" style="width: 30rem;">
                     <img src="{{ url_for('static',filename=job_item.image_url) }}" class="card-img-top job-image" alt="Job Image">
                     <div class="card-body">
-                      <h5 class="card-title">{{ job_item.title }}</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                      <h4 class="card-title"><strong>{{ job_item.title }}</strong></h4>
+                      <p class="card-text"><strong>Company name:</strong> {{job_item.company}}</p>
+                      <p class="card-text"><strong>Job Type:</strong> {{job_item.job_type}}</p>
+                      <a href="{{job_item.source_url}}" class="btn btn-primary">Apply Now</a>
                     </div>
                 </div>
                 {% endfor %}
