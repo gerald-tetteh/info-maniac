@@ -4,9 +4,9 @@
     <div class="row gx-5">
         <div class="side-bar position-sticky col-3 d-none d-md-block">
             <div class="main-side card shadow">
-               <a href = "{{ url_for('jobberman')}}"> <p>Jobberman</p></a>
+               <a href = "{{ url_for('jobberman')}}" class = "{{'active' if path == '/jobberman' else ''}}"> <p>Jobberman</p></a>
                 <hr>
-               <a href = "{{ url_for('times_jobs')}}"> <p>Times Jobs</p></a>
+               <a href = "{{ url_for('times_jobs')}}" class = "{{'active' if path == '/times_jobs' else ''}}"> <p>Times Jobs</p></a>
             </div>
         </div>
         <div class="main col-12 col-md-9">

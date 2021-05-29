@@ -72,6 +72,15 @@ body {
     padding: 1rem;
 }
 
+.main-side a:link,.main-side a:visited{
+    text-decoration: none;
+    color: #212121;
+}
+
+.active p{
+    background-color:#03a9f4;
+    color: #fff;
+}
 @media only screen and (max-width: 600px) {
     .banner-heading {
         font-size: 5rem;
