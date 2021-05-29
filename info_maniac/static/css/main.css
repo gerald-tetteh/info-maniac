@@ -81,6 +81,10 @@ body {
     background-color:#03a9f4;
     color: #fff;
 }
+
+.main .card{
+    padding: 0;
+}
 @media only screen and (max-width: 600px) {
     .banner-heading {
         font-size: 5rem;
