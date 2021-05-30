@@ -43,10 +43,8 @@
          {% if show_search %}
           <form action="{{ url_for('search') }}" method="POST" class="search-form">
             <div class="custom-search">
-              <ul id="horizontal-list">
-                <li><input type="text" class="form-control form-control-lg" placeholder="Search Job"></li>
-                <li><input type="submit" value="Search" class="btn"></li>
-              </ul>
+              <input type="text" class="form-control form-control-lg" placeholder="Search Job">
+               <input type="submit" value="Search" class="btn">
             </div>
           </form>
          {% else %}

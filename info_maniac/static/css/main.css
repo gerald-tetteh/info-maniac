@@ -50,20 +50,13 @@ body {
 
 .custom-search {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-}
-
-
-#horizontal-list{
-    list-style: none;
-    display: inline-flex;
+    margin-bottom: 3.5rem;
 }
 
 
 .custom-search .btn {
-    margin: 1rem;
-    margin-bottom: 3.5rem;
     width: 40%;
     background-color: #03a9f4;
     color: #fff;
