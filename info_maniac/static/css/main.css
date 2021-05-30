@@ -47,11 +47,20 @@ body {
     border-color: #03a9f4;
     box-shadow: 0.05rem 0.05rem 0.15rem 0.15rem #03a9f4;
 }
+
 .custom-search {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+
+#horizontal-list{
+    list-style: none;
+    display: inline-flex;
+}
+
+
 .custom-search .btn {
     margin: 1rem;
     margin-bottom: 3.5rem;
