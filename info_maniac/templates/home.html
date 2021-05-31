@@ -1,39 +1,51 @@
 {% extends "layout.html" %}
 {% block content %}
+{% import "empty_page.html" as empty_page %}
 <div class="container">
-    <div class="row gx-5">
-        <div class="side-bar position-sticky col-3 d-none d-md-block">
-            <div class="main-side card shadow">
-               <a href = "{{ url_for('jobberman')}}" class = "{{'active' if path == '/jobberman' else ''}}"> <p>Jobberman</p></a>
-                <hr>
-               <a href = "{{ url_for('times_jobs')}}" class = "{{'active' if path == '/times_jobs' else ''}}"> <p>Times Jobs</p></a>
-            </div>
-        </div>
-        <div class="main col-12 col-md-9">
-            <div class="row justify-content-around gy-5">
-                {% for job_item in job_items %}
-                <div class="card col-md-6 col-lg-4 col-12 shadow" style="width: 30rem;">
-                    <img src="{{ url_for('static',filename=job_item.image_url) }}" class="card-img-top job-image" alt="Job Image">
-                    <div class="card-body">
-                      <h4 class="card-title"><strong>{{ job_item.title }}</strong></h4>
-                      <p class="card-text"><strong>Company name:</strong> {{job_item.company}}</p>
-                      <p class="card-text"><strong>Job Type:</strong> {{job_item.job_type}}</p>
-                      <div class="row">
-                          <div class="col-"></div>
-                        <a href="{{job_item.source_url}}" class="btn btn-primary col-3" >Apply Now</a>
-                        {% if current_user.is_authenticated %}
-                            {% if job_item.source_url in source_urls %}
-                                <i class="fa fa-star col-8" aria-hidden="true" style="text-align: right; color:#FFDF00;" onclick="savetowishlist('icon{{job_item.id}}','{{current_user.id}}','{{job_item.title}}','{{job_item.company}}','{{job_item.source_url}}','{{job_item.image_url}}','{{job_item.source_name}}','{{job_item.job_type}}','')" id="icon{{job_item.id}}"></i>
-                            {% else %}
-                                <i class="fa fa-star col-8" aria-hidden="true" style="text-align: right;" onclick="savetowishlist('icon{{job_item.id}}','{{current_user.id}}','{{job_item.title}}','{{job_item.company}}','{{job_item.source_url}}','{{job_item.image_url}}','{{job_item.source_name}}','{{job_item.job_type}}','')" id="icon{{job_item.id}}"></i>
-                            {% endif %}
-                        {% endif %}
-                      </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
+  <div class="row gx-5">
+    <div class="side-bar position-sticky col-3 d-none d-md-block">
+      <div class="main-side card shadow">
+        <a href="{{ url_for('jobberman')}}" class="{{'active' if path == '/jobberman' else ''}}">
+          <p>Jobberman</p>
+        </a>
+        <hr>
+        <a href="{{ url_for('times_jobs')}}" class="{{'active' if path == '/times_jobs' else ''}}">
+          <p>Times Jobs</p>
+        </a>
+      </div>
     </div>
+    <div class="main col-12 col-md-9">
+      {% if job_items|length != 0 %}
+      <div class="row justify-content-around gy-5">
+        {% for job_item in job_items %}
+        <div class="card col-md-6 col-lg-4 col-12 shadow" style="width: 30rem;">
+          <img src="{{ url_for('static',filename=job_item.image_url) }}" class="card-img-top job-image" alt="Job Image">
+          <div class="card-body">
+            <h4 class="card-title"><strong>{{ job_item.title }}</strong></h4>
+            <p class="card-text"><strong>Company name:</strong> {{job_item.company}}</p>
+            <p class="card-text card-text-last"><strong>Job Type:</strong> {{job_item.job_type}}</p>
+            <div class="card-bottom">
+              <a href="{{job_item.source_url}}" class="btn btn-primary">Apply Now</a>
+              {% if current_user.is_authenticated %}
+              {% if job_item.source_url in source_urls %}
+              <i class="fa fa-star col-8" style="text-align: right; color:#FFDF00;"
+                onclick="savetowishlist('icon{{job_item.id}}','{{current_user.id}}','{{job_item.title}}','{{job_item.company}}','{{job_item.source_url}}','{{job_item.image_url}}','{{job_item.source_name}}','{{job_item.job_type}}','')"
+                id="icon{{job_item.id}}"></i>
+              {% else %}
+              <i class="fa fa-star col-8" style="text-align: right;"
+                onclick="savetowishlist('icon{{job_item.id}}','{{current_user.id}}','{{job_item.title}}','{{job_item.company}}','{{job_item.source_url}}','{{job_item.image_url}}','{{job_item.source_name}}','{{job_item.job_type}}','')"
+                id="icon{{job_item.id}}"></i>
+              {% endif %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      {{ empty_page.empty_page(True) }}
+      {% endif %}
+    </div>
+  </div>
 </div>
 {% endblock content %}

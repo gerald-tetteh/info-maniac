@@ -1,26 +1,35 @@
 {% extends "layout.html" %}
 {% block content %}
+{% import "empty_page.html" as empty_page %}
 <div class="container">
-    <div class="row gx-5 justify-content-center">
-        <div class="main col-12 col-md-11">
-            <div class="row justify-content-around gy-5">
-                {% for job_item in job_items %}
-                <div class="card col-md-6 col-lg-3 col-12 shadow" style="width: 29rem;">
-                    <img src="{{ url_for('static',filename=job_item.image_url) }}" class="card-img-top job-image" alt="Job Image">
-                    <div class="card-body">
-                      <h4 class="card-title"><strong>{{ job_item.title }}</strong></h4>
-                      <p class="card-text"><strong>Company name:</strong> {{job_item.company}}</p>
-                      <p class="card-text"><strong>Job Type:</strong> {{job_item.job_type}}</p>
-                      <div class="row">
-                          <div class="col-"></div>
-                        <a href="{{job_item.source_url}}" class="btn btn-primary col-3" >Apply Now</a>
-                        <i class="fa fa-star col-8" aria-hidden="true" style="text-align: right; color:#FFDF00;" onclick="savetowishlist('icon{{job_item.id}}','{{current_user.id}}','{{job_item.title}}','{{job_item.company}}','{{job_item.source_url}}','{{job_item.image_url}}','{{job_item.source_name}}','{{job_item.job_type}}','{{job_item.id}}')" id="icon{{job_item.id}}"></i>
-                      </div>
-                    </div>
-                </div>
-                {% endfor %}
+  <div class="row gx-5 justify-content-center">
+    <div class="main col-12 col-md-11">
+      {% if job_items|length != 0 %}
+      <div class="row justify-content-around gy-5">
+        {% for job_item in job_items %}
+        <div class="card col-md-6 col-lg-3 col-12 shadow" style="width: 29rem;">
+          <img src="{{ url_for('static',filename=job_item.image_url) }}" class="card-img-top job-image" alt="Job Image">
+          <div class="card-body">
+            <h4 class="card-title"><strong>{{ job_item.title }}</strong></h4>
+            <p class="card-text"><strong>Company name:</strong> {{job_item.company}}</p>
+            <p class="card-text"><strong>Job Type:</strong> {{job_item.job_type}}</p>
+            <div class="row">
+              <div class="col-"></div>
+              <a href="{{job_item.source_url}}" class="btn btn-primary col-3">Apply Now</a>
+              <i class="fa fa-star col-8" aria-hidden="true" style="text-align: right; color:#FFDF00;"
+                onclick="savetowishlist('icon{{job_item.id}}','{{current_user.id}}','{{job_item.title}}','{{job_item.company}}','{{job_item.source_url}}','{{job_item.image_url}}','{{job_item.source_name}}','{{job_item.job_type}}','{{job_item.id}}')"
+                id="icon{{job_item.id}}"></i>
             </div>
+          </div>
         </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="d-flex justify-content-center">
+        {{ empty_page.empty_page() }}
+      </div>
+      {% endif %}
     </div>
+  </div>
 </div>
 {% endblock content %}

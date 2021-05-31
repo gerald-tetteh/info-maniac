@@ -126,6 +126,24 @@ body {
     justify-content: center;
     margin-top: 1rem;
 }
+
+.card-body {
+  position: relative;
+}
+.card-bottom {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+}
+.card-text-last {
+  margin-bottom: 3rem;
+}
+
+.empty-page {
+  font-family: 'Bangers', cursive;
+  font-size: 8rem;
+}
 @media only screen and (max-width: 600px) {
     .banner-heading {
         font-size: 5rem;

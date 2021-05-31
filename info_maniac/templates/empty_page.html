@@ -1,0 +1,7 @@
+{% macro empty_page(search=False) -%}
+{% if search %}
+<p class="empty-page">Could not Find Anything</p>
+{% else %}
+<p class="empty-page">Nothing Here Yet!</p>
+{% endif %}
+{%- endmacro %}
