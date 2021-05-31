@@ -84,6 +84,18 @@ body {
     color: #fff;
 }
 
+.footer{
+    background-color:#03a9f4;
+    color: #fff;
+    padding: 40px;
+    margin-top: 20px;
+    font-size: small;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+}
+
 .main .card{
     padding: 0;
 }
