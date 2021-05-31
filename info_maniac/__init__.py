@@ -2,12 +2,16 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 import atexit
 from apscheduler.schedulers.background import  BackgroundScheduler
+from flask_login import LoginManager
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
 app.config["SECRET_KEY"] = "621ce3fc-6aa9-4978-a4ec-6709008323e2"
 
 db = SQLAlchemy(app)
+login_manager = LoginManager(app)
+bcrypt = Bcrypt(app)
 
 from info_maniac.models import *
 from info_maniac.scraper import scrape_and_save
