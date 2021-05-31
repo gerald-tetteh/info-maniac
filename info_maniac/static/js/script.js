@@ -1,4 +1,49 @@
-function savetowishlist(id){
+function saving(userId, title, company, source_url, image_url, source_name, job_type){
+    var url = "http://192.168.137.167:5000/add-to-wishlist";
+    const e = { userId: `${userId}`, title: `${title}`, company:`${company}`, source_url:`${source_url}`, image_url:`${image_url}`, source_name:`${source_name}`, job_type:`${job_type}` };
+    fetch(url,{method: 'POST', // or 'PUT'
+    headers: {
+      'Content-Type': 'application/json',
+    },
+   
+    body:JSON.stringify(e)
+})
+  .then(function(data) {
+        return data;
+    })
+    .then(function(data){
+        console.log(data);
+    })
+ 
+  .catch(function(error) {
+
+  });
+}
+
+function removeWishlistItem(id) {
+    var url = "/remove-wishlist-item";
+    const e = { id: `${id}`};
+    return fetch(url, 
+        {
+            method: 'POST', // or 'PUT'
+            headers: {
+            'Content-Type': 'application/json',
+        },
+
+        body:JSON.stringify(e)
+        }) .then(function(data) {
+                return data;
+            })
+            .then(function(data){
+                console.log(data);
+            })
+        
+            .catch(function(error) {
+
+            });
+}
+
+function savetowishlist(id, userId, title, company, source_url, image_url, source_name, job_type,itemId){
     var icon = document.getElementById(id);
     var style = getComputedStyle(icon);
     console.log(style['color']);
@@ -6,10 +51,13 @@ function savetowishlist(id){
     if(style['color']=="rgb(255, 223, 0)"){
         console.log("barbie");
         icon.style.color="black";
-    }else{
+        removeWishlistItem(itemId)
+        .then(() => {
+            location.reload();
+        })
+    } else {
         icon.style.color="#FFDF00";
+        saving(userId, title, company, source_url, image_url, source_name, job_type)
     }
-    
-    
 
 }
