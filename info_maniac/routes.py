@@ -2,7 +2,7 @@ from info_maniac import app
 from flask import render_template, redirect, url_for, request
 from info_maniac.models import JobItem
 from info_maniac.scraper import search_jobberman_scraper
-from info_maniac.forms import RegisterForm
+from info_maniac.forms import RegisterForm, LoginForm
 
 @app.route("/")
 def home():
@@ -25,6 +25,14 @@ def register():
   if form.validate_on_submit():
     return redirect(url_for("home"))
   return render_template("register.html", header_text="Register", show_search=False, path="/register", form=form) 
+
+@app.route("/login", methods=["POST", "GET"])
+def login():
+  form = LoginForm()
+  if form.validate_on_submit():
+    return redirect(url_for("home"))
+  return render_template("login.html", header_text="Login", show_search=False, path="/login", form=form)
+    
 
 @app.route("/search", methods=["POST"])
 def search():

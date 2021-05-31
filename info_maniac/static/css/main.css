@@ -108,15 +108,15 @@ body {
     margin-bottom: 3rem;
 }
 
-.register-form-group {
+.register-form-group, .login-form-group {
     max-width: 50rem;
     width: 100%;
     margin: 3rem auto;
 }
-.register-form-group input:not(:last-of-type) {
+.register-form-group input:not(:last-of-type), .login-form-group input:not(:last-of-type) {
     margin-bottom: 1rem;
 }
-.register-form-group input[type="submit"] {
+.register-form-group input[type="submit"], .login-form-group input[type="submit"] {
     width: 70%;
     background-color: #03a9f4;
     color: #fff;

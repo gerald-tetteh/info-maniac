@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container">
+    <form  class="login-form" method="POST">
+        {{ form.hidden_tag() }}
+        <fieldset class="login-form-group">
+            {{ form.email.label(class="form-label login-form-email-label") }}
+            {% if form.email.errors %}
+                {{ form.email(class="form-control is-invalid form-control-lg login-form-email") }}
+                <div class="invalid-feedback">
+                    {% for error in form.email.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.email(class="form-control form-control-lg login-form-email") }}
+            {% endif %}
+
+            {{ form.password.label(class="form-label login-form-password-label") }}
+            {% if form.password.errors %}
+                {{ form.password(class="form-control is-invalid form-control-lg login-form-password") }}
+                <div class="invalid-feedback">
+                    {% for error in form.password.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.password(class="form-control form-control-lg login-form-password") }}
+            {% endif %}
+
+            <div class="submit-button">
+                {{ form.submit(class="btn btn-lg") }}
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+{% endblock %}
