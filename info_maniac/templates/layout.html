@@ -31,7 +31,7 @@
                 <a class="nav-link" href="#">Login</a>
               </li>
               <li class="nav-item me-3">
-                <a class="nav-link" href="#">Signup</a>
+                <a class="nav-link" href="{{ url_for('register') }}">Signup</a>
               </li>
             </ul>
           </div>
@@ -57,7 +57,8 @@
    <main>
      {% block content %}{% endblock %}
    </main>
-   <footer class="footer">
+   
+   <footer class="footer container">
      <h5>
         &#169 Info Maniac 2021   |   InfoManiac@turntabl.io |   DESIGNED BY: INFO MANIAC
      </h5>

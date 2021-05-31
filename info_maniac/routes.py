@@ -2,6 +2,7 @@ from info_maniac import app
 from flask import render_template, redirect, url_for, request
 from info_maniac.models import JobItem
 from info_maniac.scraper import search_jobberman_scraper
+from info_maniac.forms import RegisterForm
 
 @app.route("/")
 def home():
@@ -16,7 +17,14 @@ def jobberman():
 @app.route("/times-jobs")
 def times_jobs():
   job_items = JobItem.query.filter_by(source_name="TimesJobs").all()
-  return render_template("home.html", header_text="info maniac", show_search=True, job_items=job_items,path="/times_jobs", value="")   
+  return render_template("home.html", header_text="info maniac", show_search=True, job_items=job_items,path="/times_jobs", value="")
+
+@app.route("/register", methods=["GET","POST"])
+def register():
+  form = RegisterForm()
+  if form.validate_on_submit():
+    return redirect(url_for("home"))
+  return render_template("register.html", header_text="Register", show_search=False, path="/register", form=form) 
 
 @app.route("/search", methods=["POST"])
 def search():
