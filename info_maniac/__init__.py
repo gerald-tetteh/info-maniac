@@ -8,6 +8,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
 
 db = SQLAlchemy(app)
 
+from info_maniac.models import *
 from info_maniac.scraper import scrape_and_save
 import info_maniac.routes
 
