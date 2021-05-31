@@ -47,14 +47,16 @@ body {
     border-color: #03a9f4;
     box-shadow: 0.05rem 0.05rem 0.15rem 0.15rem #03a9f4;
 }
+
 .custom-search {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-}
-.custom-search .btn {
-    margin: 1rem;
     margin-bottom: 3.5rem;
+}
+
+
+.custom-search .btn {
     width: 40%;
     background-color: #03a9f4;
     color: #fff;
@@ -72,6 +74,19 @@ body {
     padding: 1rem;
 }
 
+.main-side a:link,.main-side a:visited{
+    text-decoration: none;
+    color: #212121;
+}
+
+.active p{
+    background-color:#03a9f4;
+    color: #fff;
+}
+
+.main .card{
+    padding: 0;
+}
 @media only screen and (max-width: 600px) {
     .banner-heading {
         font-size: 5rem;
