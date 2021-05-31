@@ -108,4 +108,5 @@ def search_jobberman_scraper(query):
         source_url = source_url,
         image_url = image_url,
         )
+        jobsItems_from_timesjobs.append(job_item)
     return jobsItems_from_timesjobs
