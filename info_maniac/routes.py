@@ -9,7 +9,12 @@ import json
 @app.route("/")
 def home():
   job_items = JobItem.query.all()
-  wishlist_items = current_user.wishlist
+  wishlist_items =[]
+  try:
+    wishlist_items = current_user.wishlist
+  except  Exception as e:
+    print(e)
+  print(wishlist_items)
   source_urls = [item.source_url for item in wishlist_items]
   return render_template("home.html", header_text="info maniac", show_search=True, job_items=job_items, source_urls=source_urls ,path="/", value="")
 

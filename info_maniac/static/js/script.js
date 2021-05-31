@@ -1,5 +1,5 @@
 function saving(userId, title, company, source_url, image_url, source_name, job_type){
-    var url = "http://192.168.137.167:5000/add-to-wishlist";
+    var url = "/add-to-wishlist";
     const e = { userId: `${userId}`, title: `${title}`, company:`${company}`, source_url:`${source_url}`, image_url:`${image_url}`, source_name:`${source_name}`, job_type:`${job_type}` };
     fetch(url,{method: 'POST', // or 'PUT'
     headers: {
@@ -56,6 +56,7 @@ function savetowishlist(id, userId, title, company, source_url, image_url, sourc
             location.reload();
         })
     } else {
+        
         icon.style.color="#FFDF00";
         saving(userId, title, company, source_url, image_url, source_name, job_type)
     }
