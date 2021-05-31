@@ -1,8 +1,9 @@
 from info_maniac import app, db, bcrypt
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request, flash
+from flask_login import login_user, logout_user
 from info_maniac.models import JobItem, User
 from info_maniac.scraper import search_jobberman_scraper
-from info_maniac.forms import RegisterForm, LoginForm 
+from info_maniac.forms import RegisterForm, LoginForm
 
 @app.route("/")
 def home():
@@ -38,10 +39,23 @@ def register():
 def login():
   form = LoginForm()
   if form.validate_on_submit():
-    return redirect(url_for("home"))
+    email = form.email.data
+    password = form.password.data
+    user = User.query.filter_by(email=email).first()
+    if user and bcrypt.check_password_hash(user.password,password):
+      login_user(user)
+      flash("Login successful","success")
+      return redirect(url_for("home"))
+    else:
+      flash("Email or password is incorrect","danger")
+      return render_template("login.html", header_text="Login", show_search=False, path="/login", form=form)
   return render_template("login.html", header_text="Login", show_search=False, path="/login", form=form)
-    
 
+@app.route("/logout")
+def logout():
+  logout_user()
+  return redirect(url_for("home"))
+    
 @app.route("/search", methods=["POST"])
 def search():
   input_query=""
@@ -52,6 +66,3 @@ def search():
   job_items = JobItem.query.filter(JobItem.title.contains(input_query))
   print(job_items)
   return render_template("home.html", header_text="info maniac", show_search=True, job_items=job_items, path='/search', value=input_query) 
-
-  
-
