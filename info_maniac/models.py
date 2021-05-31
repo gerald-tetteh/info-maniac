@@ -13,3 +13,22 @@ class JobItem(db.Model):
 
   def __repr__(self) -> str:
     return f"JobItem({self.title},{self.company},{self.source_name})"
+
+class User(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  first_name = db.Column(db.Text, nullable=False)
+  last_name = db.Column(db.Text, nullable=False)
+  email = db.Column(db.Text, nullable=False)
+  password = db.Column(db.Text, nullable=False)
+  date_added = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+  
+  def __repr__(self) -> str:
+    return f"User({self.first_name},{self.last_name},{self.email})"
+  
+class WishlistItem(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  user_id = db.Column(db.Integer, nullable=False)
+  job_item_id = db.Column(db.Integer, nullable=False)
+  
+  def __repr__(self) -> str:
+    return f"User({self.user_id},{self.job_item_id})" 
