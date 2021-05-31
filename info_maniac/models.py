@@ -27,14 +27,21 @@ class User(db.Model, UserMixin):
   email = db.Column(db.Text, nullable=False)
   password = db.Column(db.Text, nullable=False)
   date_added = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+  wishlist = db.relationship("WishlistItem", backref="user", lazy=True)
   
   def __repr__(self) -> str:
     return f"User({self.first_name},{self.last_name},{self.email})"
   
 class WishlistItem(db.Model):
   id = db.Column(db.Integer, primary_key=True)
-  user_id = db.Column(db.Integer, nullable=False)
-  job_item_id = db.Column(db.Integer, nullable=False)
+  title = db.Column(db.Text, nullable=False)
+  company = db.Column(db.Text, nullable=False)
+  source_url = db.Column(db.Text, nullable=False, unique=True)
+  image_url = db.Column(db.Text, nullable=False, default="default.png")
+  date_added = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+  source_name = db.Column(db.Text, nullable=False)
+  job_type = db.Column(db.Text, nullable=False, default="Unknown")
+  user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
   
   def __repr__(self) -> str:
-    return f"User({self.user_id},{self.job_item_id})" 
+    return f"WishlistItem({self.user_id},{self.id})" 

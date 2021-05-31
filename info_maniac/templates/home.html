@@ -21,7 +21,13 @@
                       <div class="row">
                           <div class="col-"></div>
                         <a href="{{job_item.source_url}}" class="btn btn-primary col-3" >Apply Now</a>
-                        <i class="fa fa-star col-8" aria-hidden="true" style="text-align: right;" onclick="savetowishlist('icon{{job_item.id}}')" id="icon{{job_item.id}}"></i>
+                        {% if current_user.is_authenticated %}
+                            {% if job_item.source_url in source_urls %}
+                                <i class="fa fa-star col-8" aria-hidden="true" style="text-align: right; color:#FFDF00;" onclick="savetowishlist('icon{{job_item.id}}','{{current_user.id}}','{{job_item.title}}','{{job_item.company}}','{{job_item.source_url}}','{{job_item.image_url}}','{{job_item.source_name}}','{{job_item.job_type}}','')" id="icon{{job_item.id}}"></i>
+                            {% else %}
+                                <i class="fa fa-star col-8" aria-hidden="true" style="text-align: right;" onclick="savetowishlist('icon{{job_item.id}}','{{current_user.id}}','{{job_item.title}}','{{job_item.company}}','{{job_item.source_url}}','{{job_item.image_url}}','{{job_item.source_name}}','{{job_item.job_type}}','')" id="icon{{job_item.id}}"></i>
+                            {% endif %}
+                        {% endif %}
                       </div>
                     </div>
                 </div>
