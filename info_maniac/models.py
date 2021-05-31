@@ -1,5 +1,11 @@
 from info_maniac import db
 from datetime import datetime
+from flask_login import UserMixin
+from info_maniac import login_manager, db
+
+@login_manager.user_loader
+def load_user(user_id):
+  return User.query.get(user_id)
 
 class JobItem(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -14,7 +20,7 @@ class JobItem(db.Model):
   def __repr__(self) -> str:
     return f"JobItem({self.title},{self.company},{self.source_name})"
 
-class User(db.Model):
+class User(db.Model, UserMixin):
   id = db.Column(db.Integer, primary_key=True)
   first_name = db.Column(db.Text, nullable=False)
   last_name = db.Column(db.Text, nullable=False)

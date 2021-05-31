@@ -1,8 +1,8 @@
-from info_maniac import app
+from info_maniac import app, db, bcrypt
 from flask import render_template, redirect, url_for, request
-from info_maniac.models import JobItem
+from info_maniac.models import JobItem, User
 from info_maniac.scraper import search_jobberman_scraper
-from info_maniac.forms import RegisterForm, LoginForm
+from info_maniac.forms import RegisterForm, LoginForm 
 
 @app.route("/")
 def home():
@@ -23,6 +23,14 @@ def times_jobs():
 def register():
   form = RegisterForm()
   if form.validate_on_submit():
+    first_name = form.first_name.data
+    last_name = form.last_name.data
+    email = form.email.data
+    password = form.password.data
+    hash_password = bcrypt.generate_password_hash(password)
+    user = User(first_name=first_name, last_name=last_name, email=email, password=hash_password)
+    db.session.add(user)
+    db.session.commit()
     return redirect(url_for("home"))
   return render_template("register.html", header_text="Register", show_search=False, path="/register", form=form) 
 
