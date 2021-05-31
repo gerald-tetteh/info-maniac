@@ -28,12 +28,21 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav ms-auto">
-              <li class="nav-item me-3">
-                <a class="nav-link" href="{{ url_for('login') }}">Login</a>
-              </li>
-              <li class="nav-item me-3">
-                <a class="nav-link" href="{{ url_for('register') }}">Signup</a>
-              </li>
+              {% if current_user.is_authenticated %}
+                <li class="nav-item me-3">
+                  <a class="nav-link" href="#">Wishlist</a>
+                </li>
+                <li class="nav-item me-3">
+                  <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                </li>
+              {% else %}
+                <li class="nav-item me-3">
+                  <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                </li>
+                <li class="nav-item me-3">
+                  <a class="nav-link" href="{{ url_for('register') }}">Signup</a>
+                </li>
+              {% endif %}
             </ul>
           </div>
         </div>
@@ -56,6 +65,18 @@
    </header>
 
    <main>
+     {% with messages = get_flashed_messages(with_categories=True) %}
+     {% if messages %}
+     {% for category,message in messages %}
+     <div class="container">
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+     </div>
+     {% endfor %}
+     {% endif %}
+     {% endwith %}
      {% block content %}{% endblock %}
    </main>
    
