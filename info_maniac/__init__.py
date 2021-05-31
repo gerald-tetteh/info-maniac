@@ -13,6 +13,9 @@ db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 bcrypt = Bcrypt(app)
 
+login_manager.login_view = "login"
+login_manager.login_message_category = "info"
+
 from info_maniac.models import *
 from info_maniac.scraper import scrape_and_save
 import info_maniac.routes
