@@ -12,10 +12,9 @@
           <div class="card-body">
             <h4 class="card-title"><strong>{{ job_item.title }}</strong></h4>
             <p class="card-text"><strong>Company name:</strong> {{job_item.company}}</p>
-            <p class="card-text"><strong>Job Type:</strong> {{job_item.job_type}}</p>
-            <div class="row">
-              <div class="col-"></div>
-              <a href="{{job_item.source_url}}" class="btn btn-primary col-3">Apply Now</a>
+            <p class="card-text card-text-last"><strong>Job Type:</strong> {{job_item.job_type}}</p>
+            <div class="card-bottom">
+              <a href="{{job_item.source_url}}" class="btn btn-primary">Apply Now</a>
               <i class="fa fa-star col-8" aria-hidden="true" style="text-align: right; color:#FFDF00;"
                 onclick="savetowishlist('icon{{job_item.id}}','{{current_user.id}}','{{job_item.title}}','{{job_item.company}}','{{job_item.source_url}}','{{job_item.image_url}}','{{job_item.source_name}}','{{job_item.job_type}}','{{job_item.id}}')"
                 id="icon{{job_item.id}}"></i>
