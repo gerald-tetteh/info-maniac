@@ -28,7 +28,7 @@ def jobberman():
   print(source_urls)
   return render_template("home.html", header_text="info maniac", show_search=True, job_items=job_items, source_urls=source_urls,path="/jobberman", value="")
 
-@app.route("/times-jobs")
+@app.route("/timesjobs")
 def times_jobs():
   job_items = JobItem.query.filter_by(source_name="TimesJobs").all()
   wishlist_items =[]
@@ -37,7 +37,8 @@ def times_jobs():
   except  Exception as e:
     print(e)
   source_urls = [item.source_url for item in wishlist_items]
-  return render_template("home.html", header_text="info maniac", show_search=True, job_items=job_items, source_urls=source_urls,path="/times-jobs", value="")
+  print(source_urls)
+  return render_template("home.html", header_text="info maniac", show_search=True, job_items=job_items, source_urls=source_urls,path="/timesjobs", value="")
 
 @app.route("/register", methods=["GET","POST"])
 def register():
