@@ -19,12 +19,25 @@ def home():
 @app.route("/jobberman")
 def jobberman():
   job_items = JobItem.query.filter_by(source_name="Jobberman").all()
-  return render_template("home.html", header_text="info maniac", show_search=True, job_items=job_items, source_urls=[],path="/jobberman", value="")
+  wishlist_items =[]
+  try:
+    wishlist_items = current_user.wishlist
+  except  Exception as e:
+    print(e)
+  source_urls = [item.source_url for item in wishlist_items]
+  print(source_urls)
+  return render_template("home.html", header_text="info maniac", show_search=True, job_items=job_items, source_urls=source_urls,path="/jobberman", value="")
 
 @app.route("/times-jobs")
 def times_jobs():
   job_items = JobItem.query.filter_by(source_name="TimesJobs").all()
-  return render_template("home.html", header_text="info maniac", show_search=True, job_items=job_items, source_urls=[],path="/times_jobs", value="")
+  wishlist_items =[]
+  try:
+    wishlist_items = current_user.wishlist
+  except  Exception as e:
+    print(e)
+  source_urls = [item.source_url for item in wishlist_items]
+  return render_template("home.html", header_text="info maniac", show_search=True, job_items=job_items, source_urls=source_urls,path="/times-jobs", value="")
 
 @app.route("/register", methods=["GET","POST"])
 def register():
