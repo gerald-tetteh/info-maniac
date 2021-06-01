@@ -23,21 +23,17 @@ function saving(userId, title, company, source_url, image_url, source_name, job_
 function removeWishlistItem(id) {
     var url = "/remove-wishlist-item";
     const e = { id: `${id}`};
-    return fetch(url, 
+    fetch(url, 
         {
             method: 'POST', // or 'PUT'
             headers: {
             'Content-Type': 'application/json',
-        },
+            },
 
         body:JSON.stringify(e)
         }) .then(function(data) {
-                return data;
+                location.reload();
             })
-            .then(function(data){
-                console.log(data);
-            })
-        
             .catch(function(error) {
 
             });
@@ -52,11 +48,8 @@ function savetowishlist(id, userId, title, company, source_url, image_url, sourc
         console.log("barbie");
         icon.style.color="black";
         removeWishlistItem(itemId)
-        .then(() => {
-            location.reload();
-        })
     } else {
-        
+        console.log("here")
         icon.style.color="#FFDF00";
         saving(userId, title, company, source_url, image_url, source_name, job_type)
     }
