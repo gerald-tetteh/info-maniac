@@ -53,7 +53,7 @@ def scrape_from_timesjobs():
 
     job_item = JobItem(
       title = title_.strip(),
-      company = company.strip(),
+      company = company.strip().replace("\n","").split("(More Jobs)")[0].strip(),
       job_type = job_type.strip(),
       source_name = "TimesJobs",
       source_url = source_url,
