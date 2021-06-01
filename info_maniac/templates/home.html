@@ -25,7 +25,7 @@
             <p class="card-text"><strong>Company name:</strong> {{job_item.company}}</p>
             <p class="card-text card-text-last"><strong>Job Type:</strong> {{job_item.job_type}}</p>
             <div class="card-bottom">
-              <a href="{{job_item.source_url}}" class="btn btn-primary">Apply Now</a>
+              <a href="{{job_item.source_url}}" target="_blank" class="btn btn-primary">Apply Now</a>
               {% if current_user.is_authenticated %}
               {% if job_item.source_url in source_urls %}
               <i class="fa fa-star col-8" style="text-align: right; color:#FFDF00;"
