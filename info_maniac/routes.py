@@ -103,7 +103,7 @@ def add_to_wishlist():
       image_url = data["image_url"],
       source_name = data["source_name"],
       job_type = data["job_type"],
-      user_id = data["userId"]
+      user_id = int(data["userId"])
     )
     current_user.wishlist.append(wishitem)
     db.session.commit()
@@ -114,9 +114,13 @@ def add_to_wishlist():
 
 @app.route("/remove-wishlist-item", methods=["POST"])
 def remove_wishlist_item():
-  id = int(json.loads(request.data)["id"])
+  id = json.loads(request.data)["id"]
+  print(id)
   wishlist_items = current_user.wishlist
-  item = list(filter(lambda x: x.id == id, wishlist_items))[0]
+  try:
+    item = list(filter(lambda x: x.id == int(id), wishlist_items))[0]
+  except  Exception as e:
+    item = list(filter(lambda x: x.source_url == id, wishlist_items))[0]
   db.session.delete(item)
   db.session.commit()
   return {}

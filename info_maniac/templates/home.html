@@ -9,7 +9,7 @@
           <p>Jobberman</p>
         </a>
         <hr>
-        <a href="{{ url_for('times_jobs')}}" class="{{'active' if path == '/times_jobs' else ''}}">
+        <a href="{{ url_for('times_jobs')}}" class="{{'active' if path == '/times-jobs' else ''}}">
           <p>Times Jobs</p>
         </a>
       </div>
@@ -29,11 +29,11 @@
               {% if current_user.is_authenticated %}
               {% if job_item.source_url in source_urls %}
               <i class="fa fa-star col-8" style="text-align: right; color:#FFDF00;"
-                onclick="savetowishlist('icon{{job_item.id}}','{{current_user.id}}','{{job_item.title}}','{{job_item.company}}','{{job_item.source_url}}','{{job_item.image_url}}','{{job_item.source_name}}','{{job_item.job_type}}','')"
+                onclick="savetowishlist('icon{{job_item.id}}','{{current_user.id}}','{{job_item.title}}','{{job_item.company}}','{{job_item.source_url}}','{{job_item.image_url}}','{{job_item.source_name}}','{{job_item.job_type}}','{{job_item.source_url}}')"
                 id="icon{{job_item.id}}"></i>
               {% else %}
               <i class="fa fa-star col-8" style="text-align: right;"
-                onclick="savetowishlist('icon{{job_item.id}}','{{current_user.id}}','{{job_item.title}}','{{job_item.company}}','{{job_item.source_url}}','{{job_item.image_url}}','{{job_item.source_name}}','{{job_item.job_type}}','')"
+                onclick="savetowishlist('icon{{job_item.id}}','{{current_user.id}}','{{job_item.title}}','{{job_item.company}}','{{job_item.source_url}}','{{job_item.image_url}}','{{job_item.source_name}}','{{job_item.job_type}}','{{job_item.id}}')"
                 id="icon{{job_item.id}}"></i>
               {% endif %}
               {% endif %}
