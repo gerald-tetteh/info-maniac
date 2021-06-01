@@ -1,37 +1,40 @@
 APScheduler==3.7.0
 bcrypt==3.2.0
-beautifulsoup4 @ file:///home/linux1/recipes/ci/beautifulsoup4_1610988766420/work
+beautifulsoup4==4.9.3
 brotlipy==0.7.0
 certifi==2020.12.5
-cffi @ file:///opt/concourse/worker/volumes/live/a70943eb-ad97-40c6-78c9-98764c1bee07/volume/cffi_1613246936716/work
-chardet @ file:///opt/concourse/worker/volumes/live/7e1102c4-8702-40f2-63d6-f260ce5f85e4/volume/chardet_1607706831384/work
-click @ file:///tmp/build/80754af9/click_1621604852318/work
-cryptography @ file:///opt/concourse/worker/volumes/live/d5dda287-c0b3-4861-7262-fab05baa64dc/volume/cryptography_1616769284011/work
+cffi==1.14.5
+chardet==4.0.0
+click==8.0.1
+cryptography==3.4.7
 dnspython==2.1.0
 email-validator==1.1.2
-Flask @ file:///home/ktietz/src/ci/flask_1611932660458/work
+Flask==1.1.2
 Flask-Bcrypt==0.7.1
 Flask-Login==0.5.0
-Flask-SQLAlchemy @ file:///tmp/build/80754af9/flask-sqlalchemy_1616180561581/work
+Flask-SQLAlchemy==2.5.1
 Flask-WTF==0.15.1
-greenlet @ file:///opt/concourse/worker/volumes/live/3d030e63-590e-4f13-439a-f458077e6fdc/volume/greenlet_1620913624685/work
+greenlet==1.1.0
 gunicorn==20.1.0
-idna @ file:///home/linux1/recipes/ci/idna_1610986105248/work
-importlib-metadata @ file:///opt/concourse/worker/volumes/live/bdafb81c-7edc-4122-77fe-a69839ec3c71/volume/importlib-metadata_1617877361684/work
-itsdangerous @ file:///tmp/build/80754af9/itsdangerous_1621432558163/work
-Jinja2 @ file:///tmp/build/80754af9/jinja2_1621238361758/work
-lxml @ file:///opt/concourse/worker/volumes/live/e9a191ad-c8f1-4bb7-7955-c333b8ab6c55/volume/lxml_1616443232489/work
-MarkupSafe @ file:///opt/concourse/worker/volumes/live/1bcf0940-5bf8-4171-61e3-2133f5885e8b/volume/markupsafe_1621528148241/work
-pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
-pyOpenSSL @ file:///tmp/build/80754af9/pyopenssl_1608057966937/work
-PySocks @ file:///opt/concourse/worker/volumes/live/112288ac-9cb0-4e73-768b-13baf4ca6419/volume/pysocks_1605305820043/work
+idna==2.10
+importlib-metadata==3.10.0
+itsdangerous==2.0.1
+Jinja2==3.0.0
+lxml==4.6.3
+MarkupSafe==2.0.1
+pip==21.1.1
+pycparser==2.20
+pyOpenSSL==20.0.1
+PySocks==1.7.1
 pytz==2021.1
-requests @ file:///tmp/build/80754af9/requests_1608241421344/work
-six @ file:///opt/concourse/worker/volumes/live/34b5b2b5-c9cb-44fb-4b8e-8a9a881bfa35/volume/six_1605205329242/work
-soupsieve @ file:///tmp/build/80754af9/soupsieve_1616183228191/work
-SQLAlchemy @ file:///opt/concourse/worker/volumes/live/b6febf8f-acef-469a-46dc-a4b8012d6bce/volume/sqlalchemy_1620712420650/work
+requests==2.25.1
+setuptools==52.0.0.post20210125
+six==1.15.0
+soupsieve==2.2.1
+SQLAlchemy==1.4.15
 tzlocal==2.1
-urllib3 @ file:///tmp/build/80754af9/urllib3_1615837158687/work
-Werkzeug @ file:///home/ktietz/src/ci/werkzeug_1611932622770/work
+urllib3==1.26.4
+Werkzeug==1.0.1
+wheel==0.36.2
 WTForms==2.3.3
-zipp @ file:///tmp/build/80754af9/zipp_1615904174917/work
+zipp==3.4.1
